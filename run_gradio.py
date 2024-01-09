@@ -1,6 +1,6 @@
 # first: pip install pysqlite3-binary
 # then in settings.py:
-
+import os
 # these three lines swap the stdlib sqlite3 lib with the pysqlite3 package
 __import__('pysqlite3')
 import sys
@@ -16,7 +16,6 @@ DATABASES = {
 import gradio as gr
 from langchain.vectorstores import Chroma
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
-import os
 from LLM import InternLM_LLM
 from langchain.prompts import PromptTemplate
 import torch
