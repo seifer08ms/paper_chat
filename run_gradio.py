@@ -5,6 +5,16 @@ from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 import os
 from LLM import InternLM_LLM
 from langchain.prompts import PromptTemplate
+import torch
+from modelscope import snapshot_download, AutoModel, AutoTokenizer
+import os
+def init():
+    model_dir = snapshot_download('Shanghai_AI_Laboratory/internlm-chat-7b'
+                                  , cache_dir='./', revision='v1.0.3')
+    os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+    # 下载模型
+    os.system('huggingface-cli download --resume-download sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 --local-dir sentence-transformer')
+
 
 def load_chain():
     # 加载问答链
@@ -48,6 +58,7 @@ class Model_center():
     """
     存储问答 Chain 的对象 
     """
+    init()
     def __init__(self):
         self.chain = load_chain()
 
